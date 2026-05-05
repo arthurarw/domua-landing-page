@@ -1,26 +1,182 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-domua-blue: #2563EB;
+  --color-domua-blue-soft: #DBEAFE;
+  --color-domua-blue-pale: #EFF6FF;
+  --color-domua-navy-deep: #0F172A;
+  --color-domua-text: #0F172A;
+  --color-domua-border: #E2E8F0;
+  --color-domua-muted: #64748B;
+  --shadow-dash: 0 2px 12px rgba(15, 23, 42, 0.06);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    @apply font-sans text-domua-text bg-[#F8FAFC] antialiased;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+
+  /* Backgrounds */
+  .hero-bg {
+    background: radial-gradient(ellipse 60% 40% at 80% 0%, rgba(59, 130, 246, 0.15), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 0% 100%, rgba(37, 99, 235, 0.12), transparent 60%),
+      linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
+  }
+
+  .benefits-bg {
+    background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%);
+  }
+
+  .cta-bg {
+    background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
+    @apply rounded-[20px];
+  }
+
+  /* Pills */
+  .pill {
+    @apply inline-flex items-center px-[14px] py-[6px] rounded-full text-[11px] font-semibold tracking-[0.08em] uppercase;
+  }
+
+  .pill-dark {
+    background: rgba(59, 130, 246, 0.12);
+    @apply text-blue-300 border border-blue-500/25;
+  }
+
+  .pill-light {
+    @apply bg-domua-blue-soft text-domua-blue;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply bg-domua-blue text-white px-[22px] py-3 rounded-[10px] font-semibold text-sm transition-all duration-200 inline-flex items-center gap-2 hover:bg-blue-700 hover:-translate-y-px;
+  }
+
+  .btn-ghost-dark {
+    background: rgba(255, 255, 255, 0.06);
+    @apply text-white px-[22px] py-3 rounded-[10px] font-semibold text-sm border border-white/15 transition-all duration-200 inline-flex items-center gap-2 hover:bg-white/10;
+  }
+
+  /* Nav */
+  .nav-link {
+    @apply text-white/75 transition-colors duration-200 text-sm font-medium hover:text-white;
+  }
+
+  /* Feature cards */
+  .feature-card {
+    @apply bg-white rounded-2xl p-8 border border-[#EEF2F7] transition-all duration-300 text-center hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(15,23,42,0.08)] hover:border-[#DBE5F5];
+  }
+
+  .feature-icon {
+    @apply w-14 h-14 mx-auto mb-5 bg-domua-blue-soft rounded-[14px] flex items-center justify-center text-domua-blue text-[22px];
+  }
+
+  /* Dashboard */
+  .dash-card {
+    @apply bg-white rounded-2xl border border-domua-border overflow-hidden shadow-dash;
+  }
+
+  .dash-side-item {
+    @apply flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-domua-muted cursor-default;
+  }
+
+  .dash-side-item.active {
+    @apply bg-domua-blue-soft text-domua-blue font-semibold;
+  }
+
+  .stat-card {
+    @apply bg-slate-50 rounded-xl p-3.5 border border-slate-100;
+  }
+
+  /* Testimonials */
+  .testi-card {
+    @apply bg-white rounded-2xl p-7 border border-[#EEF2F7] shadow-[0_4px_20px_rgba(15,23,42,0.04)];
+  }
+
+  /* Logo bar */
+  .logo-bar {
+    @apply bg-white rounded-2xl shadow-[0_4px_20px_rgba(15,23,42,0.05)] border border-[#EEF2F7];
+  }
+
+  .logo-item {
+    @apply text-slate-400 font-semibold text-sm flex items-center gap-2 transition-colors duration-200 hover:text-slate-500;
+  }
+
+  /* Problem section */
+  .problem-x {
+    @apply w-[22px] h-[22px] rounded-full bg-domua-blue text-white inline-flex items-center justify-center text-[10px] flex-shrink-0;
+  }
+
+  /* Lead pill */
+  .lead-pill {
+    @apply text-[9px] px-2 py-[3px] rounded-full font-semibold;
+  }
+
+  /* Avatar */
+  .avatar {
+    background: linear-gradient(135deg, #93c5fd, #2563eb);
+    @apply w-7 h-7 rounded-full flex-shrink-0;
+  }
+
+  .avatar-lg {
+    @apply w-11 h-11;
+  }
+
+  /* Domua logo */
+  .domua-logo {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    @apply w-9 h-9 rounded-[10px] flex items-center justify-center text-white font-extrabold text-lg shadow-[0_4px_12px_rgba(37,99,235,0.35)] relative;
+  }
+
+  .domua-logo::after {
+    content: "";
+    @apply absolute inset-[6px] rounded-md border-2 border-white/60 border-b-transparent border-r-transparent;
+  }
+
+  .domua-logo-sm {
+    @apply w-7 h-7 text-sm rounded-lg;
+  }
+
+  .domua-logo-sm::after {
+    @apply inset-[5px] rounded border border-white/60 border-b-transparent border-r-transparent;
+  }
+
+  /* Stars */
+  .stars {
+    @apply text-amber-400 text-sm tracking-[2px];
+  }
+
+  /* Dot nav */
+  .dot {
+    @apply w-2 h-2 rounded-full bg-slate-300 inline-block;
+  }
+
+  .dot.active {
+    @apply bg-domua-blue w-[22px] rounded;
+  }
+
+  /* Newsletter */
+  .newsletter-input {
+    @apply bg-white border border-domua-border rounded-[10px] py-2.5 pl-4 pr-12 text-sm w-full text-domua-text focus:outline-none focus:ring-2 focus:ring-domua-blue focus:ring-offset-1;
+  }
+
+  /* Section spacing */
+  .section {
+    @apply py-14 md:py-24;
+  }
+
+  /* Funnel highlight */
+  .funnel-col {
+    @apply text-center px-1 py-2;
+  }
+
+  .funnel-col.highlight {
+    @apply bg-amber-100 rounded-lg;
+  }
 }
